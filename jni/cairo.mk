@@ -4,12 +4,14 @@ LIBCAIRO_SRC = \
 	       cairo/src/cairo-array.c                       \
 	       cairo/src/cairo-atomic.c                      \
 	       cairo/src/cairo-base64-stream.c               \
+	       cairo/src/cairo-base85-stream.c               \
 	       cairo/src/cairo-bentley-ottmann.c             \
 	       cairo/src/cairo-bentley-ottmann-rectangular.c \
 	       cairo/src/cairo-bentley-ottmann-rectilinear.c \
 	       cairo/src/cairo-boxes.c                       \
 	       cairo/src/cairo.c                             \
 	       cairo/src/cairo-cache.c                       \
+	       cairo/src/cairo-cff-subset.c                  \
 	       cairo/src/cairo-clip.c                        \
 	       cairo/src/cairo-color.c                       \
 	       cairo/src/cairo-composite-rectangles.c        \
@@ -22,6 +24,7 @@ LIBCAIRO_SRC = \
 	       cairo/src/cairo-font-face-twin-data.c         \
 	       cairo/src/cairo-font-options.c                \
 	       cairo/src/cairo-freelist.c                    \
+	       cairo/src/cairo-ft-font.c                     \
 	       cairo/src/cairo-mesh-pattern-rasterizer.c     \
 	       cairo/src/cairo-gstate.c                      \
 	       cairo/src/cairo-hash.c                        \
@@ -42,8 +45,12 @@ LIBCAIRO_SRC = \
 	       cairo/src/cairo-path-in-fill.c                \
 	       cairo/src/cairo-path-stroke.c                 \
 	       cairo/src/cairo-pattern.c                     \
+	       cairo/src/cairo-pdf-operators.c               \
+	       cairo/src/cairo-pdf-shading.c                 \
+	       cairo/src/cairo-pdf-surface.c                 \
 	       cairo/src/cairo-pen.c                         \
 	       cairo/src/cairo-polygon.c                     \
+	       cairo/src/cairo-ps-surface.c                  \
 	       cairo/src/cairo-recording-surface.c           \
 	       cairo/src/cairo-rectangle.c                   \
 	       cairo/src/cairo-rectangular-scan-converter.c  \
@@ -59,15 +66,20 @@ LIBCAIRO_SRC = \
 	       cairo/src/cairo-surface-fallback.c            \
 	       cairo/src/cairo-surface-snapshot.c            \
 	       cairo/src/cairo-surface-wrapper.c             \
+	       cairo/src/cairo-svg-surface.c                 \
 	       cairo/src/cairo-tee-surface.c                 \
 	       cairo/src/cairo-tor-scan-converter.c          \
 	       cairo/src/cairo-toy-font-face.c               \
 	       cairo/src/cairo-traps.c                       \
+	       cairo/src/cairo-truetype-subset.c             \
+		   cairo/src/cairo-type1-fallback.c              \
+		   cairo/src/cairo-type1-glyph-names.c           \
+		   cairo/src/cairo-type1-subset.c                \
+		   cairo/src/cairo-type3-glyph-surface.c         \
 	       cairo/src/cairo-unicode.c                     \
 	       cairo/src/cairo-user-font.c                   \
 	       cairo/src/cairo-version.c                     \
 	       cairo/src/cairo-wideint.c
-
 
 LIBCAIRO_CFLAGS:=                                                   \
     -DPACKAGE_VERSION="\"android-cairo\""                           \
@@ -79,7 +91,7 @@ LIBCAIRO_CFLAGS:=                                                   \
 include $(CLEAR_VARS)
 
 LOCAL_MODULE    := libcairo
-LOCAL_CFLAGS    := -O2 $(LIBCAIRO_CFLAGS) -Ijni/pixman/pixman -Ijni/cairo/src -Ijni/cairo-extra -Ijni/pixman-extra -Wno-missing-field-initializers
+LOCAL_CFLAGS    := -O2 $(LIBCAIRO_CFLAGS) -Ijni/pixman/pixman -Ijni/cairo/src -Ijni/cairo-extra -Ijni/pixman-extra -Wno-missing-field-initializers -Ijni/freetype-2.4.5/include
 LOCAL_LDFLAGS   := -lz
 LOCAL_SRC_FILES := $(LIBCAIRO_SRC)
 
